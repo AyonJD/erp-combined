@@ -48,7 +48,7 @@ const WelcomePageContent = () => {
   const containerRef = useRef(null)
   const [isLoading, setIsLoading] = useState(true)
   const [isAuthenticated, setIsAuthenticated] = useState(false)
-  const { t } = useGlobalContext()
+  const { t, setLoggedInUser } = useGlobalContext()
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -60,8 +60,10 @@ const WelcomePageContent = () => {
 
       try {
         const response = await getMe(token)
-        if (response.status_code === 200) {
+        
+        if (response?.status_code === 200) {
           setIsAuthenticated(true)
+          setLoggedInUser(response.data)
           setIsLoading(false)
         } else {
           router.push('/login')

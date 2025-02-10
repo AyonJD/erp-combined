@@ -17,6 +17,7 @@ export const getMe = async token => {
         Authorization: `Bearer ${token}`,
       },
     })
+    console.log(res, token)
     return res.data
   } catch (error) {
     console.log(error)

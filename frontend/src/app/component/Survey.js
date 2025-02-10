@@ -19,18 +19,16 @@ import Page14 from './pageComponent/page14'
 import Page15 from './pageComponent/page15'
 import Page16 from './pageComponent/page16'
 import { useGlobalContext } from '../context/Context'
+import { getMe } from '@/backend/auth/auth'
+import { useRouter } from 'next/navigation'
 
 export default function Survey() {
-  const { setLanguage, language } = useGlobalContext()
+  const { setLanguage, language, loggedInUser, setLoggedInUser } =
+    useGlobalContext()
 
+  const router = useRouter()
   const [currentPage, setCurrentPage] = useState(2)
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    country: '',
-    age: '',
-    gender: '',
     terms: false,
     satisfaction: '',
     source: [],
@@ -57,13 +55,35 @@ export default function Survey() {
     badQualityFrequency: [],
     additionalFeedback: '',
   })
-
+  
   const [isOpen, setIsOpen] = useState(false)
   const sidebarRef = useRef(null)
 
   useEffect(() => {
+    const checkAuth = async () => {
+      const token = localStorage.getItem('erp_authtoken')
+      if (!token) {
+        router.push('/login')
+        return
+      }
+
+      try {
+        const response = await getMe(token)
+
+        if (response?.status_code === 200) {
+          setLoggedInUser(response.data)
+        } else {
+          router.push('/login')
+        }
+      } catch (error) {
+        console.error('Error validating user:', error)
+        router.push('/login')
+      }
+    }
+
     if (typeof window !== 'undefined') {
       setLanguage(localStorage.getItem('erp_language') || 'en')
+      checkAuth()
     }
 
     function handleClickOutside(event) {

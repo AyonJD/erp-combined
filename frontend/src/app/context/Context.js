@@ -9,12 +9,15 @@ const Context = createContext(null)
 
 export const ContextProvider = ({ children }) => {
   const [language, setLanguage] = useState('en')
+  const [loggedInUser, setLoggedInUser] = useState(null)
 
   // Add more global states as needed
   const globalState = {
     language,
     setLanguage,
     t: language === 'en' ? en : bn,
+    loggedInUser,
+    setLoggedInUser,
   }
 
   return <Context.Provider value={globalState}>{children}</Context.Provider>

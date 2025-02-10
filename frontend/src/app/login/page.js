@@ -1,17 +1,21 @@
 'use client'
 
 import { useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import { Loader2 } from 'lucide-react'
+import { toast } from 'react-hot-toast'
 import pageBg from '../../assets/pageOneBg.jpg'
 import { loginApi } from '@/backend/auth/auth'
+import DynamicToast from '../component/shared/DynamicToast'
+import { useRouter } from 'next/navigation'
 
 export default function LoginPage() {
   const [identifier, setIdentifier] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+  const router = useRouter()
 
   const handleLogin = async e => {
     e.preventDefault()
@@ -21,9 +25,21 @@ export default function LoginPage() {
     try {
       const response = await loginApi({ identifier, password })
       localStorage.setItem('erp_authtoken', response.data.access_token)
-      
 
-      alert('Login successful')
+      toast.custom(
+        t => (
+          <DynamicToast
+            visible={t.visible}
+            message="Login successful!"
+            type="success"
+          />
+        ),
+        {
+          duration: 3000,
+        }
+      )
+
+      router.push('/survey')
     } catch (error) {
       setError('Invalid credentials. Please try again.')
     } finally {
@@ -34,7 +50,7 @@ export default function LoginPage() {
   return (
     <div className="relative min-h-screen flex items-center justify-center p-4">
       <Image
-        src={pageBg.src}
+        src={pageBg.src || '/placeholder.svg'}
         alt="Background"
         layout="fill"
         objectFit="cover"

@@ -1,11 +1,11 @@
 import { BASE_URL } from '@/utils'
 import axios from 'axios'
 
-export const login = async data => {
-  console.log(data)
+export const loginApi = async data => {
+
   try {
     const res = await axios.post(`${BASE_URL}/login`, data)
-    console.log(res)
+    return res
   } catch (error) {
     console.log(error)
   }

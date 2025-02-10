@@ -1,6 +1,5 @@
 from fastapi import APIRouter, HTTPException, Header
-from models.user_model import UserModel
-from services.user_service import create_user, login_user, get_logged_in_user  # Import the login_user function
+from services.user_service import login_user  # Import the login_user function
 from utils.response import create_response
 
 # Define the router

@@ -1,121 +1,170 @@
 'use client'
 
-import { useState } from 'react'
-import { motion } from 'framer-motion'
-import Image from 'next/image'
-import { Loader2 } from 'lucide-react'
-import pageBg from '../assets/pageOneBg.jpg'
-import { login } from '@/backend/auth/auth'
+import { useEffect, useRef } from 'react'
+import { motion, useAnimation } from 'framer-motion'
+import { useRouter } from 'next/navigation'
 
-export default function LoginPage() {
-  const [identifier, setIdentifier] = useState('')
-  const [password, setPassword] = useState('')
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState('')
+const letterVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: i => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.1,
+      duration: 0.5,
+      ease: [0.6, -0.05, 0.01, 0.99],
+    },
+  }),
+}
 
-  const handleLogin = async e => {
-    e.preventDefault()
-    setLoading(true)
-    setError('')
+const buttonVariants = {
+  hidden: { opacity: 0, scale: 0 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      delay: 1.5,
+      duration: 0.5,
+      type: 'spring',
+      stiffness: 200,
+      damping: 10,
+    },
+  },
+  hover: {
+    scale: 1.05,
+    transition: {
+      duration: 0.3,
+      yoyo: Number.POSITIVE_INFINITY,
+    },
+  },
+}
 
-    try {
-      const response = await login({ identifier, password })
-      localStorage.setItem('erp_authtoken', response.data.token)
-
-      // Fetch user profile
-      // const profileResponse = await axios.get('/api/profile', {
-      //   headers: { Authorization: `Bearer ${response.data.token}` },
-      // })
-
-      alert('Login successful')
-    } catch (error) {
-      setError('Invalid credentials. Please try again.')
-    } finally {
-      setLoading(false)
-    }
-  }
+const StarField = () => {
+  const stars = new Array(100).fill(0).map((_, i) => ({
+    id: i,
+    size: Math.random() * 2 + 1,
+    x: Math.random() * 100,
+    y: Math.random() * 100,
+    duration: Math.random() * 3 + 2,
+  }))
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center p-4">
-      <Image
-        src={pageBg.src}
-        alt="Background"
-        layout="fill"
-        objectFit="cover"
-        quality={100}
-      />
+    <div className="absolute inset-0 overflow-hidden">
+      {stars.map(star => (
+        <motion.div
+          key={star.id}
+          className="absolute rounded-full bg-white"
+          style={{
+            width: star.size,
+            height: star.size,
+            left: `${star.x}%`,
+            top: `${star.y}%`,
+          }}
+          animate={{
+            opacity: [0, 1, 0],
+            scale: [0, 1, 0],
+          }}
+          transition={{
+            duration: star.duration,
+            repeat: Number.POSITIVE_INFINITY,
+            ease: 'easeInOut',
+          }}
+        />
+      ))}
+    </div>
+  )
+}
+
+const Moon = () => {
+  return (
+    <motion.div
+      className="absolute top-8 left-8 w-24 h-24 rounded-full bg-gray-300"
+      initial={{ opacity: 0, scale: 0.5 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 1, ease: 'easeOut' }}
+      style={{
+        boxShadow:
+          'inset -8px -8px 0 0 rgba(0,0,0,0.2), 0 0 20px 5px rgba(255, 255, 255, 0.3)',
+        background: 'radial-gradient(circle at 30% 30%, #f0f0f0, #c0c0c0)',
+      }}
+    >
       <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5 }}
-        className="relative z-10 w-full max-w-md"
-      >
-        <div className="backdrop-blur-md bg-white/30 p-8 rounded-xl shadow-2xl">
-          <motion.h1
-            initial={{ y: -20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="text-3xl font-bold mb-6 text-center text-white"
+        className="absolute inset-0 rounded-full"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: [0, 0.2, 0] }}
+        transition={{
+          duration: 5,
+          repeat: Number.POSITIVE_INFINITY,
+          ease: 'easeInOut',
+        }}
+        style={{
+          background:
+            'radial-gradient(circle at 70% 70%, rgba(255,255,255,0.5), transparent 50%)',
+          boxShadow: '0 0 20px 10px rgba(255, 255, 255, 0.1)',
+        }}
+      />
+    </motion.div>
+  )
+}
+
+export default function WelcomePage() {
+  const router = useRouter()
+  const controls = useAnimation()
+  const containerRef = useRef(null)
+
+  useEffect(() => {
+    controls.start('visible')
+
+    const handleResize = () => {
+      if (containerRef.current) {
+        containerRef.current.style.height = `${window.innerHeight}px`
+      }
+    }
+
+    handleResize()
+    window.addEventListener('resize', handleResize)
+
+    return () => window.removeEventListener('resize', handleResize)
+  }, [controls])
+
+  const welcomeText = 'Welcome to Our Servey App'
+
+  return (
+    <div
+      ref={containerRef}
+      className="relative bg-gray-900 flex flex-col items-center justify-center overflow-hidden"
+    >
+      <StarField />
+      <Moon />
+      <div className="relative z-10 text-center">
+        <motion.h1 className="text-4xl text-center md:text-5xl lg:text-6xl font-bold text-white mb-8">
+          {welcomeText.split('').map((letter, index) => (
+            <motion.span
+              key={index}
+              variants={letterVariants}
+              initial="hidden"
+              animate={controls}
+              custom={index}
+              className="inline-block"
+            >
+              {letter === ' ' ? '\u00A0' : letter}
+            </motion.span>
+          ))}
+        </motion.h1>
+        <motion.div
+          variants={buttonVariants}
+          initial="visible"
+          animate="visible"
+          whileHover="hover"
+        >
+          <button
+            onClick={() => router.push('/survey')}
+            className="px-6 py-3 bg-blue-500 text-white rounded-full font-semibold text-lg shadow-lg hover:bg-blue-600 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-900"
           >
-            Login
-          </motion.h1>
-          <form onSubmit={handleLogin} className="space-y-4">
-            <motion.div
-              initial={{ x: -20, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ delay: 0.3 }}
-            >
-              <input
-                type="text"
-                placeholder="Email / Phone / Member Serial Number"
-                value={identifier}
-                onChange={e => setIdentifier(e.target.value)}
-                required
-                className="w-full px-4 py-2 rounded-md bg-white/50 border border-white/50 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              />
-            </motion.div>
-            <motion.div
-              initial={{ x: -20, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ delay: 0.4 }}
-            >
-              <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={e => setPassword(e.target.value)}
-                required
-                className="w-full px-4 py-2 rounded-md bg-white/50 border border-white/50 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              />
-            </motion.div>
-            <motion.div
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.5 }}
-            >
-              <button
-                type="submit"
-                className="w-full px-4 py-2 rounded-md bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
-                disabled={loading}
-              >
-                {loading ? (
-                  <Loader2 className="animate-spin inline-block mr-2" />
-                ) : null}
-                {loading ? 'Logging in...' : 'Login'}
-              </button>
-            </motion.div>
-          </form>
-          {error && (
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="mt-4 text-red-500 text-center"
-            >
-              {error}
-            </motion.p>
-          )}
-        </div>
-      </motion.div>
+            Go to Survey
+          </button>
+        </motion.div>
+      </div>
     </div>
   )
 }

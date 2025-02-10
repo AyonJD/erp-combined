@@ -42,12 +42,12 @@ const Page12 = ({ formData, updateFormData, onNext, onPrev }) => {
   }, [formData.foodIssuesFaced])
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-8 pt-20">
+    <form onSubmit={handleSubmit} className="space-y-8">
       <h2 className="text-2xl font-medium text-gray-900 mb-6">
         8. What are the issues you faced?
       </h2>
 
-      <div className="space-y-4">
+      <div className="space-y-1">
         {sourceOptions.map(option => (
           <label
             key={option}

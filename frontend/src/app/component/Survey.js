@@ -285,7 +285,7 @@ export default function Survey() {
 
       {isFullScreenPage ? (
         // Full-screen Layout for Pages 2, 4, 6, 7, 8, 9, 10, 11, 12, and 13
-        <div className="min-h-screen">{renderPage()}</div>
+        <div className="min-height-screen">{renderPage()}</div>
       ) : (
         <div className="flex flex-col lg:flex-row min-h-screen pt-14">
           {/* Left Section */}

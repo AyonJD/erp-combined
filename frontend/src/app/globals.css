@@ -19,3 +19,8 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.min-height-screen {
+  height: calc(100vh - 56px) !important;
+  box-sizing: border-box;
+}

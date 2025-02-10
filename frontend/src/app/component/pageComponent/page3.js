@@ -42,7 +42,7 @@ const Page3 = ({ formData, updateFormData, onNext, onPrev }) => {
   }, [formData.source])
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5 pt-20">
+    <form onSubmit={handleSubmit} className="space-y-5">
       <h2 className="text-2xl font-medium text-gray-900 mb-6">
         4. How did you hear about our company?
       </h2>

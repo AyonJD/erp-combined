@@ -24,7 +24,7 @@ export default function Page9({ formData, updateFormData, onNext, onPrev }) {
     <div className=" ">
       {/* Circular gradient overlays */}
 
-      <div className="relative z-10 min-h-screen flex flex-col">
+      <div className="relative z-10 flex flex-col">
         {/* Right section */}
         <div className="flex flex-col justify-center">
           <div className="space-y-6">
@@ -36,7 +36,7 @@ export default function Page9({ formData, updateFormData, onNext, onPrev }) {
                 </h2>
               </div>
 
-              <div className="space-y-4">
+              <div className="space-y-2">
                 {[
                   { label: 'Yes', value: '1' },
                   { label: 'Sometimes', value: '0.5' },
@@ -44,7 +44,7 @@ export default function Page9({ formData, updateFormData, onNext, onPrev }) {
                 ].map(option => (
                   <label
                     key={option.label}
-                    className={`flex items-center p-3 sm:p-3.5 rounded-lg cursor-pointer transition-all  
+                    className={`flex items-center p-2 sm:p-2.5 rounded-lg cursor-pointer transition-all  
                             ${
                               selectedOption === option.value
                                 ? 'bg-[#3940BD] border-2 border-white'
@@ -52,7 +52,7 @@ export default function Page9({ formData, updateFormData, onNext, onPrev }) {
                             } hover:opacity-90`}
                   >
                     <div
-                      className={`w-5 h-5 rounded-full border-2 ${
+                      className={`w-3 h-3 rounded-full border-2 ${
                         selectedOption === option.value
                           ? 'border-white'
                           : 'border-black'
@@ -76,7 +76,7 @@ export default function Page9({ formData, updateFormData, onNext, onPrev }) {
                       )}
                     </div>
                     <span
-                      className={`text-base sm:text-lg ml-3 ${
+                      className={`text-base ml-3 ${
                         selectedOption === option.value
                           ? 'text-white'
                           : 'text-black'

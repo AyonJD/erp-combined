@@ -21,7 +21,7 @@ export default function Page8({ formData, updateFormData, onNext, onPrev }) {
   }
 
   return (
-    <div className=" ">
+    <div className="">
       <div className="">
         {/* Header */}
 

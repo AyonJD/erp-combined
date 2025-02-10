@@ -43,7 +43,7 @@ function Page15({ formData, updateFormData, onNext }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6 pt-20">
+    <form onSubmit={handleSubmit} className="space-y-6">
       <h2 className="text-2xl font-medium text-gray-900 mb-6">
         11. Do you have any additional feedback for us?
       </h2>

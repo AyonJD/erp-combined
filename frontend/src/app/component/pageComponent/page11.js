@@ -57,7 +57,7 @@ export default function Page11({
                       </h2>
                     </div>
 
-                    <div className="space-y-4">
+                    <div className="space-y-2">
                       {[
                         { label: 'Every Three Months', value: '1' },
                         { label: '1/2 times a week', value: '2' },
@@ -67,7 +67,7 @@ export default function Page11({
                       ].map(option => (
                         <label
                           key={option.label}
-                          className={`flex items-center p-3 sm:p-3.5 rounded-lg cursor-pointer transition-all  
+                          className={`flex items-center p-2 sm:p-2.5 rounded-lg cursor-pointer transition-all  
                             ${
                               selectedOption === option.value
                                 ? 'bg-[#3940BD] border-2 border-white'
@@ -75,7 +75,7 @@ export default function Page11({
                             } hover:opacity-90`}
                         >
                           <div
-                            className={`w-5 h-5 rounded-full border-2 ${
+                            className={`w-3 h-3 rounded-full border-2 ${
                               selectedOption === option.value
                                 ? 'border-white'
                                 : 'border-black'
@@ -99,7 +99,7 @@ export default function Page11({
                             )}
                           </div>
                           <span
-                            className={`text-base sm:text-lg ml-3 ${
+                            className={`text-base ml-3 ${
                               selectedOption === option.value
                                 ? 'text-white'
                                 : 'text-black'

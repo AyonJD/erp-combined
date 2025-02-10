@@ -77,7 +77,7 @@ function Page13({ formData, updateFormData, onNext }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6 pt-20">
+    <form onSubmit={handleSubmit} className="space-y-6">
       <h2 className="text-2xl font-medium text-gray-900 mb-6">
         9. In you opnion, What needs to be changed to avoid bad quality of food?
       </h2>

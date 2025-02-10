@@ -1,7 +1,7 @@
 import React from 'react'
 import Survey from '../component/Survey'
 
-const DashboardPage = () => {
+const SurveyPage = () => {
   return (
     <div>
       <Survey />
@@ -9,4 +9,4 @@ const DashboardPage = () => {
   )
 }
 
-export default DashboardPage
+export default SurveyPage

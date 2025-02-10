@@ -18,8 +18,11 @@ import Page13 from './pageComponent/page13'
 import Page14 from './pageComponent/page14'
 import Page15 from './pageComponent/page15'
 import Page16 from './pageComponent/page16'
+import { useGlobalContext } from '../context/Context'
 
 export default function Survey() {
+  const { setLanguage, language } = useGlobalContext()
+
   const [currentPage, setCurrentPage] = useState(2)
   const [formData, setFormData] = useState({
     firstName: '',
@@ -59,6 +62,10 @@ export default function Survey() {
   const sidebarRef = useRef(null)
 
   useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setLanguage(localStorage.getItem('erp_language') || 'en')
+    }
+
     function handleClickOutside(event) {
       if (
         sidebarRef.current &&

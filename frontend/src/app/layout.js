@@ -1,20 +1,21 @@
-import { Geist, Azeret_Mono as Geist_Mono } from 'next/font/google';
-import "./globals.css";
+import { Geist, Azeret_Mono as Geist_Mono } from 'next/font/google'
+import './globals.css'
+import { ContextProvider } from './context/Context'
 
 const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+  variable: '--font-geist-sans',
+  subsets: ['latin'],
+})
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+  variable: '--font-geist-mono',
+  subsets: ['latin'],
+})
 
 export const metadata = {
-  title: "Food Quality Survey System",
-  description: "Welcome to our Food Quality Survey System",
-};
+  title: 'Food Quality Survey System',
+  description: 'Welcome to our Food Quality Survey System',
+}
 
 export default function RootLayout({ children }) {
   return (
@@ -22,8 +23,8 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen`}
       >
-        {children}
+        <ContextProvider>{children}</ContextProvider>
       </body>
     </html>
-  );
+  )
 }

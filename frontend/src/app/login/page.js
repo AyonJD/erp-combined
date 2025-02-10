@@ -20,12 +20,8 @@ export default function LoginPage() {
 
     try {
       const response = await loginApi({ identifier, password })
-      localStorage.setItem('erp_authtoken', response.data.token)
-      console.log(response, '---------')
-      // Fetch user profile
-      // const profileResponse = await axios.get('/api/profile', {
-      //   headers: { Authorization: `Bearer ${response.data.token}` },
-      // })
+      localStorage.setItem('erp_authtoken', response.data.access_token)
+      
 
       alert('Login successful')
     } catch (error) {

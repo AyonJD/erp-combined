@@ -29,33 +29,66 @@ export default function Survey() {
   const router = useRouter()
   const [currentPage, setCurrentPage] = useState(2)
   const [formData, setFormData] = useState({
-    terms: false,
-    satisfaction: '',
-    source: [],
-    recommend: '',
-    recommendReason: '',
-    rating_service_provided: null,
-    rating_product_quality: null,
-    rating_support: null,
-    rating_general_satisfaction: null,
+    // satisfaction: '',
+    // recommend: '',
+    // recommendReason: '',
+    // rating_service_provided: null,
+    // rating_product_quality: null,
+    // rating_support: null,
+    // rating_general_satisfaction: null,
+    // qualityElements: [],
+    // selectedYears: [],
+    // avoidBadQualityeedback: '',
+    // terms: false,
+
+    // page 1----> 6
     serviceRating: null,
     review: '',
-    qualityElements: [],
-    badFoodFrequency: null,
-    badFoodAdditionalComment: '',
-    foodQualityImprovementFrequency: null,
-    foodQualityComment: '',
-    selectedYears: [],
+
+    // page 2----> 5
+    rating_service_quality: null,
+    rating_meal_planning: null,
+    rating_food_taste: null,
+    rating_dine_in_environment_hygiene: null,
+    rating_cooking_quality: null,
+
+    // page 3---> 8
     canteenService: null,
     canteenServiceReview: '',
+
+    // page 4----> 3
+    source: [],
+
+    // page 5----> 9
     canteedFoodSatisfaction: null,
     canteedFoodSatisfactionReview: '',
+
+    // page 6----> 10
+    badFoodFrequency: null,
+    badFoodAdditionalComment: '',
+
+    // page 7----> 11
+    foodQualityImprovementFrequency: null,
+    foodQualityComment: '',
+
+    // page 8----> 12
     foodIssuesFaced: [],
-    avoidBadQualityeedback: '',
+
+    // page 9----> 13
+    avoidBadQualityFeedback: '',
+
+    // page 10----> 14
     badQualityFrequency: [],
+
+    // page 11----> 15
     additionalFeedback: '',
+
+    // page 12----> 16
+    feedback: '',
+
+    // 21
   })
-  
+
   const [isOpen, setIsOpen] = useState(false)
   const sidebarRef = useRef(null)
 

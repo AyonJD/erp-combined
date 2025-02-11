@@ -86,7 +86,6 @@ def create_feedback(feedback_data: dict) -> dict:
         "review": feedback_data.get("review"),
         "serviceRating": feedback_data.get("serviceRating"),
         "source": feedback_data.get("source"),
-        "terms": feedback_data.get("terms"),
         "createdAt": feedback_data.get("createdAt")
     }
 

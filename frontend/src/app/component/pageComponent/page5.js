@@ -14,14 +14,20 @@ export default function Page5({ formData, updateFormData, onNext, onPrev }) {
   ]
 
   const handleRatingChange = (category, rating) => {
-    const fieldName = `rating_${category.toLowerCase().replace(/\s+/g, '_')}`
+    const fieldName = `rating_${category
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '_')}`
+
     updateFormData({ [fieldName]: rating })
     setError(false)
   }
 
   const handleNext = () => {
     const isAllRated = ratingCategories.every(category => {
-      const fieldName = `rating_${category.toLowerCase().replace(/\s+/g, '_')}`
+      const fieldName = `rating_${category
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '_')}`
+
       return formData[fieldName] !== null && formData[fieldName] !== undefined
     })
 
@@ -45,7 +51,8 @@ export default function Page5({ formData, updateFormData, onNext, onPrev }) {
         {ratingCategories.map(category => {
           const fieldName = `rating_${category
             .toLowerCase()
-            .replace(/\s+/g, '_')}`
+            .replace(/[^a-z0-9]+/g, '_')}`
+
           const hasError = error && !formData[fieldName]
 
           return (

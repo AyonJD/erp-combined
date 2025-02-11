@@ -24,4 +24,3 @@ class FeedbackModel(BaseModel):
     review: Optional[str] = None
     serviceRating: Optional[int] = None
     source: Optional[List[str]] = None  # List of strings (e.g., ['Fresh Food', 'Variety of Items'])
-    terms: Optional[bool] = None  # Boolean value (e.g., False)

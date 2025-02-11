@@ -84,7 +84,7 @@ function Page13({ formData, updateFormData, onNext }) {
 
       <div className="space-y-4">
         <div className="relative">
-          {renderErrorBadge('avoidBadQualityeedback')}
+          {renderErrorBadge('avoidBadQualityFeedback')}
           <textarea
             placeholder="Your Feedback"
             className={`w-full px-4 py-2.5 border border-gray-300 ${
@@ -92,11 +92,11 @@ function Page13({ formData, updateFormData, onNext }) {
                 ? 'border-red-500 focus:border-red-500'
                 : 'border-gray-200 focus:border-[#6366F1]'
             } rounded-sm focus:outline-none text-gray-800 text-[13px] resize-none`}
-            value={formData.avoidBadQualityeedback || ''}
+            value={formData.avoidBadQualityFeedback || ''}
             onChange={e =>
-              updateFormData({ avoidBadQualityeedback: e.target.value })
+              updateFormData({ avoidBadQualityFeedback: e.target.value })
             }
-            onBlur={() => handleBlur('avoidBadQualityeedback')}
+            onBlur={() => handleBlur('avoidBadQualityFeedback')}
             rows="4"
           />
         </div>

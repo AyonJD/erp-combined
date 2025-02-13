@@ -9,6 +9,6 @@ class UserModel(BaseModel):
     email: str                 
     phone1: str                
     phone2: Optional[str] = None  
-    address: Optional[str]               
-    password: Optional[str]             
+    address: Optional[str] = None              
+    password: Optional[str] = None         
     category: Optional[str] = None 

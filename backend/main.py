@@ -7,6 +7,7 @@ from utils.response import create_response
 from routes.entry import entry_route
 from routes.user_route import user_route
 from routes.feedback_route import feedback_route
+from routes.sms_route import sms_route
 
 app = FastAPI()
 
@@ -64,3 +65,4 @@ async def validation_exception_handler(request, exc: RequestValidationError):
 app.include_router(entry_route)
 app.include_router(user_route)
 app.include_router(feedback_route)
+app.include_router(sms_route)

@@ -26,8 +26,8 @@ def create_user(user_data: Dict) -> Dict:
         "department", 
         "email", 
         "phone1", 
-        "address", 
-        "password"
+        # "address", 
+        # "password"
     ]
     for field in required_fields:
         if field not in user_data or not user_data[field]:
@@ -38,7 +38,7 @@ def create_user(user_data: Dict) -> Dict:
         raise ValueError("A user with this email already exists.")
 
     # Hash the password
-    user_data["password"] = bcrypt.hash(user_data["password"])
+    # user_data["password"] = bcrypt.hash(user_data["password"])
 
     # Add createdAt timestamp
     user_data["createdAt"] = datetime.datetime.now().isoformat()

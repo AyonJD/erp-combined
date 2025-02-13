@@ -5,3 +5,4 @@ mangum
 python-dotenv
 passlib[bcrypt]
 pyjwt
+requests

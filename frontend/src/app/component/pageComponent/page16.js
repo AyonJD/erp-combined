@@ -133,7 +133,7 @@ function Page16({ formData, updateFormData, onSubmit }) {
         </div>
       </form>
 
-      <SuccessPopup5
+      {/* <SuccessPopup5
         isOpen={isPopupOpen && currentPopup === 0}
         onClose={handleNextPopup}
         onRedirect={handleNextPopup}
@@ -147,9 +147,9 @@ function Page16({ formData, updateFormData, onSubmit }) {
         isOpen={isPopupOpen && currentPopup === 2}
         onClose={handleNextPopup}
         onRedirect={handleNextPopup}
-      />
+      /> */}
       <SuccessPopup1
-        isOpen={isPopupOpen && currentPopup === 3}
+        isOpen={isPopupOpen}
         onClose={handleNextPopup}
         onRedirect={handleNextPopup}
       />

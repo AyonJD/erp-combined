@@ -21,6 +21,7 @@ import Page16 from './pageComponent/page16'
 import { useGlobalContext } from '../context/Context'
 import { getMe } from '@/backend/auth/auth'
 import { useRouter } from 'next/navigation'
+import { submitFeedback } from '@/backend/feedback'
 
 export default function Survey() {
   const { setLanguage, language, loggedInUser, setLoggedInUser } =
@@ -102,7 +103,7 @@ export default function Survey() {
 
       try {
         const response = await getMe(token)
-
+        console.log(response, 'me')
         if (response?.status_code === 200) {
           setLoggedInUser(response.data)
         } else {
@@ -147,9 +148,13 @@ export default function Survey() {
     }
   }
 
-  const handleSubmit = () => {
-    console.log('Final form data:', formData)
+  const handleSubmit = async () => {
     // Add any additional submission logic here
+    const res = await submitFeedback({ ...formData, userId: loggedInUser._id })
+    console.log(res, 'res-------')
+    if (res.status_code === 201) {
+      resetSurvey()
+    }
   }
 
   const updateFormData = newData => {
@@ -157,35 +162,55 @@ export default function Survey() {
   }
 
   const resetSurvey = () => {
-    setCurrentPage(1)
-    setFormData({
-      firstName: '',
-      lastName: '',
-      email: '',
-      country: '',
-      age: '',
-      gender: '',
-      terms: false,
-      satisfaction: '',
-      source: [],
-      recommend: '',
-      recommendReason: '',
-      rating_service_provided: null,
-      rating_product_quality: null,
-      rating_support: null,
-      rating_general_satisfaction: null,
-      serviceRating: null,
-      review: '',
-      qualityElements: [],
-      badFoodFrequency: null,
-      badFoodAdditionalComment: '',
-      foodQualityImprovementFrequency: null,
-      foodQualityComment: '',
-      selectedYears: [],
-    })
-  }
+    setInterval(() => {
+      setCurrentPage(2)
+      setFormData({
+        serviceRating: null,
+        review: '',
 
-  console.log(formData)
+        // page 2----> 5
+        rating_service_quality: null,
+        rating_meal_planning: null,
+        rating_food_taste: null,
+        rating_dine_in_environment_hygiene: null,
+        rating_cooking_quality: null,
+
+        // page 3---> 8
+        canteenService: null,
+        canteenServiceReview: '',
+
+        // page 4----> 3
+        source: [],
+
+        // page 5----> 9
+        canteedFoodSatisfaction: null,
+        canteedFoodSatisfactionReview: '',
+
+        // page 6----> 10
+        badFoodFrequency: null,
+        badFoodAdditionalComment: '',
+
+        // page 7----> 11
+        foodQualityImprovementFrequency: null,
+        foodQualityComment: '',
+
+        // page 8----> 12
+        foodIssuesFaced: [],
+
+        // page 9----> 13
+        avoidBadQualityFeedback: '',
+
+        // page 10----> 14
+        badQualityFrequency: [],
+
+        // page 11----> 15
+        additionalFeedback: '',
+
+        // page 12----> 16
+        feedback: '',
+      })
+    }, 5000)
+  }
 
   const renderPage = () => {
     switch (currentPage) {

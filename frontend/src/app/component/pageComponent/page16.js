@@ -104,7 +104,7 @@ function Page16({ formData, updateFormData, onSubmit }) {
     <>
       <form onSubmit={handleSubmit} className="space-y-6">
         <h2 className="text-2xl font-medium text-gray-900 mb-6">
-          {t.page_eleven_ques}
+          {t.page_twelve_ques}
         </h2>
 
         <div className="space-y-4">

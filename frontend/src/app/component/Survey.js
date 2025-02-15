@@ -4,7 +4,8 @@ import { useState, useEffect, useRef } from 'react'
 import { Menu } from 'lucide-react'
 
 import Link from 'next/link'
-import pageBg from '../../assets/pageOneBg.jpg'
+import pageBg from '../../assets/loginbg.jpg'
+import logo from '../../assets/logo.png'
 import Page1 from './pageComponent/page1'
 import Page6 from './pageComponent/page6'
 import Page5 from './pageComponent/page5'
@@ -22,10 +23,10 @@ import { useGlobalContext } from '../context/Context'
 import { getMe } from '@/backend/auth/auth'
 import { useRouter } from 'next/navigation'
 import { submitFeedback } from '@/backend/feedback'
+import Image from 'next/image'
 
 export default function Survey() {
-  const { setLanguage, t, loggedInUser, setLoggedInUser } =
-    useGlobalContext()
+  const { setLanguage, t, loggedInUser, setLoggedInUser } = useGlobalContext()
 
   const router = useRouter()
   const [currentPage, setCurrentPage] = useState(2)
@@ -138,6 +139,11 @@ export default function Survey() {
 
   const handleNextPage = () => {
     if (currentPage < 13) {
+      // if (currentPage === 7) {
+      //   setCurrentPage(currentPage + 2)
+      // } else {
+      //   setCurrentPage(currentPage + 1)
+      // }
       setCurrentPage(currentPage + 1)
     }
   }
@@ -340,8 +346,8 @@ export default function Survey() {
   return (
     <div className="min-h-screen">
       {/* Navbar */}
-      <nav className="fixed top-0 left-0 right-0 bg-transparent backdrop-blur-md shadow-md z-50 px-4 py-2 flex justify-between items-center">
-        <div className="text-xl font-bold text-white">LOGO</div>
+      <nav className="fixed top-0 left-0 right-0 bg-[#4A2219] backdrop-blur-md shadow-md z-50 px-4 py-2 flex justify-between items-center">
+        <div className="text-xl font-bold text-white">Food Quality Survey</div>
         <button
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle Menu"
@@ -375,31 +381,37 @@ export default function Survey() {
         <div className="flex flex-col lg:flex-row min-h-screen pt-14">
           {/* Left Section */}
           <div
-            className="w-full lg:w-1/2 p-4 sm:p-6 lg:p-8 flex flex-col"
+            className="w-full lg:w-1/2 p-4 sm:p-6 lg:p-8 flex flex-col items-center justify-center"
             style={{
-              backgroundImage: `url(${pageBg.src})`,
+              backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(${pageBg.src})`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat',
               //  make this image blur
             }}
           >
-            {/* Main Content */}
-            <div className="flex-1 flex flex-col items-center justify-center -mt-4 lg:-mt-10">
-              {/* Image Placeholder */}
-              <div className="w-full sm:w-[70%] lg:w-[55%] mx-auto aspect-[16/9] bg-gray-300 rounded-lg mb-6 sm:mb-8 lg:mb-12 flex items-center justify-center text-gray-500 text-xs sm:text-sm overflow-hidden">
+            <div className="backdrop-blur-md bg-black/40 p-4 rounded-xl shadow-2xl">
+              {/* Main Content */}
+              <div className="flex-1 flex flex-col items-center justify-center">
+                {/* Image Placeholder */}
+                {/* <div className="w-full sm:w-[70%] lg:w-[55%] mx-auto aspect-[16/9] bg-gray-300 rounded-lg mb-6 sm:mb-8 lg:mb-12 flex items-center justify-center text-gray-500 text-xs sm:text-sm overflow-hidden">
                 <div className="w-full h-full bg-white/20 flex items-center justify-center">
                   <p>Image Placeholder</p>
                 </div>
-              </div>
+              </div> */}
 
-              {/* Text Content */}
-              <h1 className="text-2xl sm:text-3xl lg:text-[42px] font-normal text-white mb-4 sm:mb-6 text-center leading-tight tracking-normal">
-                {t.food_quality_survey}
-              </h1>
-              <p className="text-white/80 text-sm sm:text-base mb-6 sm:mb-8 lg:mb-10 max-w-[320px] sm:max-w-[420px] text-center leading-relaxed">
-                {t.please_fill_the_form}
-              </p>
+                <div className="mb-6">
+                  <Image src={logo.src} width={120} height={120} alt="" />
+                </div>
+
+                {/* Text Content */}
+                <h1 className="text-2xl sm:text-3xl lg:text-[42px] font-normal text-white mb-4 text-center leading-tight tracking-normal">
+                  {t.food_quality_survey}
+                </h1>
+                <p className="text-white/80 text-sm sm:text-base max-w-[320px] sm:max-w-[420px] text-center leading-relaxed">
+                  {t.please_fill_the_form}
+                </p>
+              </div>
             </div>
 
             {/* Footer */}

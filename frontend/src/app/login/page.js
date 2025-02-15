@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import { Loader2 } from 'lucide-react'
 import { toast } from 'react-hot-toast'
-import pageBg from '../../assets/pageOneBg.jpg'
+import pageBg from '../../assets/loginbg.jpg'
 import { loginApi } from '@/backend/auth/auth'
 import DynamicToast from '../component/shared/DynamicToast'
 import { useRouter } from 'next/navigation'
@@ -67,10 +67,21 @@ export default function LoginPage() {
             initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="text-3xl font-bold mb-6 text-center text-white"
+            className="text-3xl font-bold mb-3 text-center text-white"
           >
-            Login
+            Food Quality Survey
           </motion.h1>
+          <motion.p
+            initial={{ y: -20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className="text-[14px] mb-6 text-center text-white"
+          >
+            Please login into the survey application to input your feedbacks.
+            Your login ID and password is sent to your phone number and
+            official mail address.
+          </motion.p>
+
           <form onSubmit={handleLogin} className="space-y-4">
             <motion.div
               initial={{ x: -20, opacity: 0 }}

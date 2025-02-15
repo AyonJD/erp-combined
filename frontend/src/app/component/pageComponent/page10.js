@@ -52,7 +52,7 @@ export default function Page10({ formData, updateFormData, onNext, onPrev }) {
                         { label: t.page_six_op2, value: '3' },
                         { label: t.page_six_op3, value: '2' },
                         { label: t.page_six_op4, value: '1' },
-                        { label: t.page_six_op5, value: '5' },
+                        // { label: t.page_six_op5, value: '5' },
                       ].map(option => (
                         <label
                           key={option.label}

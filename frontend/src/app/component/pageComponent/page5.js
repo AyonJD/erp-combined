@@ -63,7 +63,7 @@ export default function Page5({ formData, updateFormData, onNext, onPrev }) {
               className={`p-2 flex flex-col sm:flex-row sm:items-center sm:justify-between
                 ${hasError ? 'border border-red-300 rounded-md' : ''}`}
             >
-              <span className="text-[#6366F1] text-sm sm:text-base mb-2 sm:mb-0">
+              <span className="text-[#434E5F] text-sm sm:text-base mb-2 sm:mb-0">
                 {index === 0 && t.page_two_op1}
                 {index === 1 && t.page_two_op2}
                 {index === 2 && t.page_two_op3}

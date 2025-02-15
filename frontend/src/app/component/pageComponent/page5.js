@@ -42,14 +42,14 @@ export default function Page5({ formData, updateFormData, onNext, onPrev }) {
   }
 
   return (
-    <div className="max-w-2xl mx-auto p-2">
+    <div className=" mx-auto p-4 sm:p-6">
       <div className="mb-6">
-        <h2 className="text-[24px] leading-tight font-medium text-gray-800 mt-1">
+        <h2 className="text-xl sm:text-2xl leading-tight font-medium text-gray-800 mt-1">
           {t.page_two_ques}
         </h2>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-6">
         {ratingCategories.map((category, index) => {
           const fieldName = `rating_${category
             .toLowerCase()
@@ -60,23 +60,23 @@ export default function Page5({ formData, updateFormData, onNext, onPrev }) {
           return (
             <div
               key={category}
-              className={`p-2 flex items-center justify-between
-                ${hasError ? 'border border-red-300' : ''}`}
+              className={`p-2 flex flex-col sm:flex-row sm:items-center sm:justify-between
+                ${hasError ? 'border border-red-300 rounded-md' : ''}`}
             >
-              <span className="text-[#6366F1] text-[13px]">
+              <span className="text-[#6366F1] text-sm sm:text-base mb-2 sm:mb-0">
                 {index === 0 && t.page_two_op1}
                 {index === 1 && t.page_two_op2}
                 {index === 2 && t.page_two_op3}
                 {index === 3 && t.page_two_op4}
                 {index === 4 && t.page_two_op5}
               </span>
-              <div className="flex gap-1 w-[300px] h-[20px] items-center justify-between">
+              <div className="flex flex-wrap gap-2 sm:gap-1 justify-between sm:justify-end sm:w-[300px]">
                 {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(star => (
                   <button
                     key={star}
                     type="button"
                     onClick={() => handleRatingChange(category, star)}
-                    className={`flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-md transition-colors
+                    className={`flex-shrink-0 w-8 h-8 sm:w-6 sm:h-6 flex items-center justify-center rounded-md transition-colors text-sm
                       ${
                         formData[fieldName] === star
                           ? 'bg-[#6366F1] text-white shadow-sm'
@@ -94,21 +94,21 @@ export default function Page5({ formData, updateFormData, onNext, onPrev }) {
       </div>
 
       {error && (
-        <div className="mt-2 text-red-500 text-sm">{t.page_two_err}</div>
+        <div className="mt-4 text-red-500 text-sm">{t.page_two_err}</div>
       )}
 
-      <div className="flex justify-end mt-8 pt-6 border-t border-gray-200 gap-2">
+      <div className="flex justify-end mt-8 pt-6 border-t border-gray-200 gap-4">
         <button
           type="button"
           onClick={onPrev}
-          className="px-8 py-2.5 bg-gray-100 text-gray-700 text-sm rounded-md hover:bg-gray-200 transition-colors min-w-[100px]"
+          className="px-6 py-2.5 bg-gray-100 text-gray-700 text-sm rounded-md hover:bg-gray-200 transition-colors min-w-[100px]"
         >
           {t.previous}
         </button>
         <button
           type="button"
           onClick={handleNext}
-          className="px-8 py-2.5 bg-[#6366F1] text-white text-sm rounded-md hover:bg-opacity-90 transition-colors min-w-[100px]"
+          className="px-6 py-2.5 bg-[#6366F1] text-white text-sm rounded-md hover:bg-opacity-90 transition-colors min-w-[100px]"
         >
           {t.next}
         </button>

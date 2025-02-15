@@ -408,8 +408,8 @@ export default function Survey() {
           {/* Right Section */}
           <div className="w-full lg:w-1/2 relative flex flex-col">
             {/* Form Container */}
-            <div className="flex-grow flex items-center justify-center p-4 sm:p-6 lg:p-8 order-last lg:order-none">
-              <div className="w-full max-w-[500px]">
+            <div className="flex-grow flex items-center justify-center p-4 sm:p-6 order-last lg:order-none">
+              <div className="w-full max-w-[800px]">
                 {/* Render current page */}
                 {renderPage()}
               </div>

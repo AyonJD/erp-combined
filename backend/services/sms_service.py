@@ -37,15 +37,15 @@ def reset_passwords_and_send_sms(phone_numbers: list):
 
             # Prepare the SMS message
             sms_message = (
+                f"Food Quality Survey Credentials\n\n"
                 f"Dear User,\n"
-                f"Your account details:\n"
-                f"Member Serial Number: {user.get('member_serial_number')}\n"
-                f"Email: {user.get('email')}\n"
-                f"Phone 1: {user.get('phone1')}\n"
-                f"Phone 2: {user.get('phone2')}\n"
-                f"Your new Password is: {plain_password}\n"
-                f"Please keep it safe."
+                f"Your login credentials for SEL Food Quality Survey Application is here.\n"
+                f"Login ID (Company ID): {user.get('member_serial_number')}\n"
+                f"Your Password: {plain_password}\n\n"
+                f"Please keep your password safe. You can give your feedback with this link: https://food-quality-survey.vercel.app\n\n"
+                f"Thanks from SEL. We look forward to your valuable participation."
             )
+
 
             # Send the SMS to the user's phone number
             phone_number = user.get("phone1") or user.get("phone2")

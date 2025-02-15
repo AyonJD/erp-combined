@@ -39,7 +39,7 @@ export default function LoginPage() {
         }
       )
 
-      router.push('/survey')
+      router.push('/')
     } catch (error) {
       setError('Invalid credentials. Please try again.')
     } finally {

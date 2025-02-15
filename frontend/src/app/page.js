@@ -60,7 +60,7 @@ const WelcomePageContent = () => {
 
       try {
         const response = await getMe(token)
-        
+
         if (response?.status_code === 200) {
           setIsAuthenticated(true)
           setLoggedInUser(response.data)
@@ -126,7 +126,7 @@ const WelcomePageContent = () => {
         >
           {t.subheading}
         </motion.h2>
-        <motion.h3 className="text-3xl text-center md:text-4xl lg:text-5xl font-bold text-gray-800 mb-4">
+        {/* <motion.h3 className="text-3xl text-center md:text-4xl lg:text-5xl font-bold text-gray-800 mb-4">
           {t.welcome.split('').map((letter, index) => (
             <motion.span
               key={index}
@@ -139,7 +139,7 @@ const WelcomePageContent = () => {
               {letter === ' ' ? '\u00A0' : letter}
             </motion.span>
           ))}
-        </motion.h3>
+        </motion.h3> */}
         <motion.p
           className="text-xl md:text-2xl text-gray-600 mb-8"
           initial={{ opacity: 0, y: 20 }}

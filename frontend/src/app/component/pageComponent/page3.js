@@ -1,9 +1,11 @@
 'use client'
 
+import { useGlobalContext } from '@/app/context/Context'
 import { useState, useEffect } from 'react'
 
 const Page3 = ({ formData, updateFormData, onNext, onPrev }) => {
   const [error, setError] = useState('')
+  const { t } = useGlobalContext()
 
   const handleSubmit = e => {
     e.preventDefault()
@@ -16,14 +18,14 @@ const Page3 = ({ formData, updateFormData, onNext, onPrev }) => {
   }
 
   const sourceOptions = [
-    ' Good Taste',
-    '  Fresh Food',
+    'Good Taste',
+    'Fresh Food',
     'Variety of Items',
-    ' Good Portion Size',
-    ' Well Planned Meal',
-    ' Served Hot & Clean',
+    'Good Portion Size',
+    'Well Planned Meal',
+    'Served Hot & Clean',
     'Good behavior of Service Staff',
-    '    Other',
+    'Other',
   ]
 
   const handleOptionChange = option => {
@@ -44,11 +46,11 @@ const Page3 = ({ formData, updateFormData, onNext, onPrev }) => {
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
       <h2 className="text-2xl font-medium text-gray-900 mb-6">
-        4. How did you hear about our company?
+        {t.page_four_ques}
       </h2>
 
       <div className="space-y-2">
-        {sourceOptions.map(option => (
+        {sourceOptions.map((option, index) => (
           <label
             key={option}
             className="flex items-center gap-3 text-[16px] text-gray-600 cursor-pointer hover:bg-gray-50 p-2 rounded-lg transition-colors"
@@ -66,7 +68,16 @@ const Page3 = ({ formData, updateFormData, onNext, onPrev }) => {
               onChange={() => handleOptionChange(option)}
               className="hidden"
             />
-            <span>{option}</span>
+            <span>
+              {index === 0 && t.page_four_op1}
+              {index === 1 && t.page_four_op2}
+              {index === 2 && t.page_four_op3}
+              {index === 3 && t.page_four_op4}
+              {index === 4 && t.page_four_op5}
+              {index === 5 && t.page_four_op6}
+              {index === 6 && t.page_four_op7}
+              {index === 7 && t.page_four_op8}
+            </span>
           </label>
         ))}
       </div>
@@ -80,13 +91,13 @@ const Page3 = ({ formData, updateFormData, onNext, onPrev }) => {
             onClick={onPrev}
             className="bg-[#E5E7EB] text-gray-700 px-8 py-2.5 rounded-sm hover:bg-[#D80075] transition-colors text-[13px] font-semibold"
           >
-            Prev
+            {t.previous}
           </button>
           <button
             type="submit"
             className=" text-white font-medium px-8 py-2 rounded transition-colors bg-[#3940BD] hover:bg-white hover:text-[#3940BD] hover:border hover:border-[#3940BD] border-transparent border-[1px]"
           >
-            Next
+            {t.next}
           </button>
         </div>
       </div>

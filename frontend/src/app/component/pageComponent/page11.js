@@ -1,12 +1,7 @@
 'use client'
 
+import { useGlobalContext } from '@/app/context/Context'
 import { useState } from 'react'
-import {
-  Facebook,
-  Twitter,
-  Instagram,
-  TwitterIcon as TikTok,
-} from 'lucide-react'
 
 export default function Page11({
   formData,
@@ -14,6 +9,7 @@ export default function Page11({
   onNext = () => {},
   onPrev,
 }) {
+  const { t } = useGlobalContext()
   const [selectedOption, setSelectedOption] = useState(
     formData.foodQualityImprovementFrequency || null
   )
@@ -53,17 +49,17 @@ export default function Page11({
                   <div className="space-y-4">
                     <div className="text-white">
                       <h2 className="text-xl sm:text-2xl text-black">
-                        7. How often do you notice improvements in food quality?
+                        {t.page_seven_ques}
                       </h2>
                     </div>
 
                     <div className="space-y-2">
                       {[
-                        { label: 'Every Three Months', value: '1' },
-                        { label: '1/2 times a week', value: '2' },
-                        { label: '3/4 times a week', value: '3' },
-                        { label: '5/6 times a week', value: '4' },
-                        { label: '7/8 times a week', value: '5' },
+                        { label: t.page_seven_op1, value: '1' },
+                        { label: t.page_seven_op2, value: '2' },
+                        { label: t.page_seven_op3, value: '3' },
+                        { label: t.page_seven_op4, value: '4' },
+                        { label: t.page_seven_op5, value: '5' },
                       ].map(option => (
                         <label
                           key={option.label}
@@ -114,12 +110,12 @@ export default function Page11({
 
                   <div>
                     <label htmlFor="comment" className="block text-black mb-2">
-                      Additional Comments
+                      {t.page_six_comment_title}
                     </label>
                     <textarea
                       id="comment"
                       className="w-full h-24 sm:h-28 border-2 rounded-lg p-3 sm:p-4 text-black text-sm sm:text-base  resize-none focus:outline-black focus:ring-2"
-                      placeholder="Any additional comments about food quality improvements..."
+                      placeholder={`${t.page_seven_comment}...`}
                       value={comment}
                       onChange={e => setComment(e.target.value)}
                     />
@@ -139,7 +135,7 @@ export default function Page11({
                       className=" text-white font-medium px-8 py-2 rounded transition-colors bg-[#3940BD] hover:bg-white hover:text-[#3940BD] hover:border hover:border-[#3940BD] border-transparent border-[1px]"
                       disabled={!selectedOption}
                     >
-                      Next
+                      {t.next}
                     </button>
                   </div>
                 </div>

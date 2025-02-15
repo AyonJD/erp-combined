@@ -1,11 +1,13 @@
 'use client'
 
+import { useGlobalContext } from '@/app/context/Context'
 import React, { useState } from 'react'
 
 export default function Page8({ formData, updateFormData, onNext, onPrev }) {
   const [selectedOption, setSelectedOption] = useState(null)
   const [review, setReview] = useState('')
   const [error, setError] = useState('')
+  const { t } = useGlobalContext()
 
   const handleNext = () => {
     if (selectedOption) {
@@ -37,16 +39,15 @@ export default function Page8({ formData, updateFormData, onNext, onPrev }) {
                   <div className="space-y-4">
                     <div className="text-black">
                       <h2 className="text-xl sm:text-2xl lg:mb-8">
-                        3. Do you think the canteen provides consistently good
-                        service?
+                        {t.page_three_ques}
                       </h2>
                     </div>
 
                     <div className="space-y-4">
                       {[
-                        { label: 'Yes', value: '1' },
-                        { label: 'Sometimes', value: '0.5' },
-                        { label: 'No', value: '0' },
+                        { label: t.page_three_op1, value: '1' },
+                        { label: t.page_three_op2, value: '0.5' },
+                        { label: t.page_three_op3, value: '0' },
                       ].map(option => (
                         <label
                           key={option.label}
@@ -99,12 +100,12 @@ export default function Page8({ formData, updateFormData, onNext, onPrev }) {
 
                   <div>
                     <label htmlFor="review" className="block text-black mb-2">
-                      Your Review
+                      {t.page_three_review}
                     </label>
                     <textarea
                       id="review"
                       className="w-full h-24 border-2 rounded-lg p-3 sm:p-4 text-black text-sm sm:text-base  resize-none focus:outline-black focus:ring-2"
-                      placeholder="Write your review here..."
+                      placeholder={`${t.page_one_textfield}...`}
                       value={review}
                       onChange={e => setReview(e.target.value)}
                     />
@@ -123,7 +124,7 @@ export default function Page8({ formData, updateFormData, onNext, onPrev }) {
                         }`}
                       disabled={!selectedOption}
                     >
-                      Next
+                      {t.next}
                     </button>
                   </div>
                 </div>

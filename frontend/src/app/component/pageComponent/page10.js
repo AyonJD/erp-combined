@@ -1,13 +1,10 @@
 'use client'
 
+import { useGlobalContext } from '@/app/context/Context'
 import { useState } from 'react'
 
-export default function Page10({
-  formData,
-  updateFormData,
-  onNext,
-  onPrev,
-}) {
+export default function Page10({ formData, updateFormData, onNext, onPrev }) {
+  const { t } = useGlobalContext()
   const [selectedOption, setSelectedOption] = useState(
     formData.badFoodFrequency || null
   )
@@ -45,18 +42,17 @@ export default function Page10({
                   <div className="space-y-4">
                     <div className="text-white">
                       <h2 className="text-xl sm:text-2xl text-black">
-                        6. How often do you experience bad quality of food in a
-                        week?{' '}
+                        {t.page_six_ques}
                       </h2>
                     </div>
 
                     <div className="space-y-2">
                       {[
-                        { label: 'Every Week', value: '4' },
-                        { label: 'Every Two Weeks', value: '3' },
-                        { label: 'Every Month', value: '2' },
-                        { label: 'Every Three Months', value: '1' },
-                        { label: '1/2 times a week', value: '5' },
+                        { label: t.page_six_op1, value: '4' },
+                        { label: t.page_six_op2, value: '3' },
+                        { label: t.page_six_op3, value: '2' },
+                        { label: t.page_six_op4, value: '1' },
+                        { label: t.page_six_op5, value: '5' },
                       ].map(option => (
                         <label
                           key={option.label}
@@ -107,12 +103,12 @@ export default function Page10({
 
                   <div>
                     <label htmlFor="comment" className="block text-black mb-2">
-                      Additional Comments
+                      {t.page_six_comment_title}
                     </label>
                     <textarea
                       id="comment"
                       className="w-full h-24 sm:h-28 border-2 rounded-lg p-3 sm:p-4 text-black text-sm sm:text-base  resize-none focus:outline-black focus:ring-2"
-                      placeholder="Any additional comments about the food quality..."
+                      placeholder={`${t.page_six_commnet}...`}
                       value={comment}
                       onChange={e => setComment(e.target.value)}
                     />
@@ -132,7 +128,7 @@ export default function Page10({
                       className=" text-white font-medium px-8 py-2 rounded transition-colors bg-[#3940BD] hover:bg-white hover:text-[#3940BD] hover:border hover:border-[#3940BD] border-transparent border-[1px]"
                       disabled={!selectedOption}
                     >
-                      Next
+                      {t.next}
                     </button>
                   </div>
                 </div>

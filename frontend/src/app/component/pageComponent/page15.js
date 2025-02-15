@@ -1,10 +1,12 @@
 'use client'
 
+import { useGlobalContext } from '@/app/context/Context'
 import { useState } from 'react'
 
 function Page15({ formData, updateFormData, onNext }) {
   const [errors, setErrors] = useState({})
   const [touched, setTouched] = useState({})
+  const { t } = useGlobalContext()
 
   const handleSubmit = e => {
     e.preventDefault()
@@ -45,14 +47,14 @@ function Page15({ formData, updateFormData, onNext }) {
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <h2 className="text-2xl font-medium text-gray-900 mb-6">
-        11. Do you have any additional feedback for us?
+        {t.page_eleven_ques}
       </h2>
 
       <div className="space-y-4">
         <div className="relative">
           {renderErrorBadge('additionalFeedback')}
           <textarea
-            placeholder="Your Feedback"
+            placeholder={`${t.page_nine_comment}`}
             className={`w-full px-4 py-2.5 border border-gray-300 ${
               touched.feedback && errors.feedback
                 ? 'border-red-500 focus:border-red-500'
@@ -73,7 +75,7 @@ function Page15({ formData, updateFormData, onNext }) {
           type="submit"
           className=" text-white font-medium px-8 py-2 rounded transition-colors bg-[#3940BD] hover:bg-white hover:text-[#3940BD] hover:border hover:border-[#3940BD] border-transparent border-[1px]"
         >
-          Next
+          {t.next}
         </button>
       </div>
     </form>

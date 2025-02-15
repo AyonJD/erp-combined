@@ -1,9 +1,11 @@
 'use client'
 
+import { useGlobalContext } from '@/app/context/Context'
 import { useState, useEffect } from 'react'
 
 const Page14 = ({ formData, updateFormData, onNext, onPrev }) => {
   const [error, setError] = useState('')
+  const { t } = useGlobalContext()
 
   const handleSubmit = e => {
     e.preventDefault()
@@ -43,11 +45,11 @@ const Page14 = ({ formData, updateFormData, onNext, onPrev }) => {
   return (
     <form onSubmit={handleSubmit} className="space-y-8">
       <h2 className="text-2xl font-medium text-gray-900 mb-6">
-        10. When bad quality is more frequent?
+        {t.page_ten_ques}
       </h2>
 
       <div className="space-y-1">
-        {sourceOptions.map(option => (
+        {sourceOptions.map((option, index) => (
           <label
             key={option}
             className="flex items-center gap-3 text-[16px] text-gray-600 cursor-pointer hover:bg-gray-50 p-2 rounded-lg transition-colors"
@@ -65,7 +67,12 @@ const Page14 = ({ formData, updateFormData, onNext, onPrev }) => {
               onChange={() => handleOptionChange(option)}
               className="hidden"
             />
-            <span>{option}</span>
+            <span>
+              {index === 0 && t.page_ten_op1}
+              {index === 1 && t.page_ten_op2}
+              {index === 2 && t.page_ten_op3}
+              {index === 3 && t.page_ten_op4}
+            </span>
           </label>
         ))}
       </div>
@@ -79,13 +86,13 @@ const Page14 = ({ formData, updateFormData, onNext, onPrev }) => {
             onClick={onPrev}
             className="bg-[#E5E7EB] text-gray-700 px-8 py-2.5 rounded-sm hover:bg-[#D80075] transition-colors text-[13px] font-semibold"
           >
-            Prev
+            {t.previous}
           </button>
           <button
             type="submit"
             className=" text-white font-medium px-8 py-2 rounded transition-colors bg-[#3940BD] hover:bg-white hover:text-[#3940BD] hover:border hover:border-[#3940BD] border-transparent border-[1px]"
           >
-            Next
+            {t.next}
           </button>
         </div>
       </div>

@@ -1,9 +1,11 @@
 'use client'
 
+import { useGlobalContext } from '@/app/context/Context'
 import { useState } from 'react'
 
 export default function Page5({ formData, updateFormData, onNext, onPrev }) {
   const [error, setError] = useState(false)
+  const { t } = useGlobalContext()
 
   const ratingCategories = [
     'Food Taste',
@@ -43,12 +45,12 @@ export default function Page5({ formData, updateFormData, onNext, onPrev }) {
     <div className="max-w-2xl mx-auto p-2">
       <div className="mb-6">
         <h2 className="text-[24px] leading-tight font-medium text-gray-800 mt-1">
-          2. How will you rate the quality of food this week?
+          {t.page_two_ques}
         </h2>
       </div>
 
       <div className="space-y-4">
-        {ratingCategories.map(category => {
+        {ratingCategories.map((category, index) => {
           const fieldName = `rating_${category
             .toLowerCase()
             .replace(/[^a-z0-9]+/g, '_')}`
@@ -61,7 +63,13 @@ export default function Page5({ formData, updateFormData, onNext, onPrev }) {
               className={`p-2 flex items-center justify-between
                 ${hasError ? 'border border-red-300' : ''}`}
             >
-              <span className="text-[#6366F1] text-[13px]">{category}</span>
+              <span className="text-[#6366F1] text-[13px]">
+                {index === 0 && t.page_two_op1}
+                {index === 1 && t.page_two_op2}
+                {index === 2 && t.page_two_op3}
+                {index === 3 && t.page_two_op4}
+                {index === 4 && t.page_two_op5}
+              </span>
               <div className="flex gap-1 w-[300px] h-[20px] items-center justify-between">
                 {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(star => (
                   <button
@@ -86,9 +94,7 @@ export default function Page5({ formData, updateFormData, onNext, onPrev }) {
       </div>
 
       {error && (
-        <div className="mt-2 text-red-500 text-sm">
-          Please rate all categories before proceeding.
-        </div>
+        <div className="mt-2 text-red-500 text-sm">{t.page_two_err}</div>
       )}
 
       <div className="flex justify-end mt-8 pt-6 border-t border-gray-200 gap-2">
@@ -97,14 +103,14 @@ export default function Page5({ formData, updateFormData, onNext, onPrev }) {
           onClick={onPrev}
           className="px-8 py-2.5 bg-gray-100 text-gray-700 text-sm rounded-md hover:bg-gray-200 transition-colors min-w-[100px]"
         >
-          Prev
+          {t.previous}
         </button>
         <button
           type="button"
           onClick={handleNext}
           className="px-8 py-2.5 bg-[#6366F1] text-white text-sm rounded-md hover:bg-opacity-90 transition-colors min-w-[100px]"
         >
-          Next
+          {t.next}
         </button>
       </div>
     </div>

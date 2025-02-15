@@ -24,7 +24,7 @@ import { useRouter } from 'next/navigation'
 import { submitFeedback } from '@/backend/feedback'
 
 export default function Survey() {
-  const { setLanguage, language, loggedInUser, setLoggedInUser } =
+  const { setLanguage, t, loggedInUser, setLoggedInUser } =
     useGlobalContext()
 
   const router = useRouter()
@@ -89,7 +89,7 @@ export default function Survey() {
 
     // 21
   })
-
+  console.log(formData)
   const [isOpen, setIsOpen] = useState(false)
   const sidebarRef = useRef(null)
 
@@ -395,10 +395,10 @@ export default function Survey() {
 
               {/* Text Content */}
               <h1 className="text-2xl sm:text-3xl lg:text-[42px] font-normal text-white mb-4 sm:mb-6 text-center leading-tight tracking-normal">
-                Food Quality Survey
+                {t.food_quality_survey}
               </h1>
               <p className="text-white/80 text-sm sm:text-base mb-6 sm:mb-8 lg:mb-10 max-w-[320px] sm:max-w-[420px] text-center leading-relaxed">
-                Please fill up the form below for food quality survey
+                {t.please_fill_the_form}
               </p>
             </div>
 

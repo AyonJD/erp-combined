@@ -1,11 +1,13 @@
 'use client'
 
+import { useGlobalContext } from '@/app/context/Context'
 import { useState } from 'react'
 
 export default function Page9({ formData, updateFormData, onNext, onPrev }) {
   const [selectedOption, setSelectedOption] = useState(null)
   const [review, setReview] = useState('')
   const [error, setError] = useState('')
+  const { t } = useGlobalContext()
 
   const handleNext = () => {
     if (selectedOption) {
@@ -32,15 +34,15 @@ export default function Page9({ formData, updateFormData, onNext, onPrev }) {
             <div className="space-y-4">
               <div className="text-black">
                 <h2 className="text-xl sm:text-2xl  lg:mb-8">
-                  5. Are you often unsatisfied with canteen food & service?
+                  {t.page_five_ques}
                 </h2>
               </div>
 
               <div className="space-y-2">
                 {[
-                  { label: 'Yes', value: '1' },
-                  { label: 'Sometimes', value: '0.5' },
-                  { label: 'No', value: '0' },
+                  { label: t.page_three_op1, value: '1' },
+                  { label: t.page_three_op2, value: '0.5' },
+                  { label: t.page_three_op3, value: '0' },
                 ].map(option => (
                   <label
                     key={option.label}
@@ -91,12 +93,12 @@ export default function Page9({ formData, updateFormData, onNext, onPrev }) {
 
             <div>
               <label htmlFor="review" className="block text-black mb-2">
-                Your Review
+                {t.page_three_review}
               </label>
               <textarea
                 id="review"
                 className="w-full h-24 sm:h-28 border-2 rounded-lg p-3 sm:p-4 text-black text-sm sm:text-base  resize-none focus:outline-black focus:ring-2"
-                placeholder="Write your review here..."
+                placeholder={`${t.page_one_textfield}...`}
                 value={review}
                 onChange={e => setReview(e.target.value)}
               />
@@ -110,7 +112,7 @@ export default function Page9({ formData, updateFormData, onNext, onPrev }) {
                 className=" text-white font-medium px-8 py-2 rounded transition-colors bg-[#3940BD] hover:bg-white hover:text-[#3940BD] hover:border hover:border-[#3940BD] border-transparent border-[1px]"
                 disabled={!selectedOption}
               >
-                Next
+                {t.next}
               </button>
             </div>
           </div>

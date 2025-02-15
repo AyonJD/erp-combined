@@ -6,6 +6,7 @@ import SuccessPopup5 from '../popupModal/SuccessPopup5'
 import SuccessPopup4 from '../popupModal/SuccessPopup4'
 import SuccessPopup2 from '../popupModal/SuccessPopup2'
 import SuccessPopup1 from '../popupModal/SuccessPopup1'
+import { useGlobalContext } from '@/app/context/Context'
 
 function Page16({ formData, updateFormData, onSubmit }) {
   const [errors, setErrors] = useState({})
@@ -13,6 +14,7 @@ function Page16({ formData, updateFormData, onSubmit }) {
   const [isPopupOpen, setIsPopupOpen] = useState(false)
   const [currentPopup, setCurrentPopup] = useState(0)
   const router = useRouter()
+  const { t } = useGlobalContext()
 
   const validateForm = () => {
     const newErrors = {}
@@ -102,14 +104,14 @@ function Page16({ formData, updateFormData, onSubmit }) {
     <>
       <form onSubmit={handleSubmit} className="space-y-6">
         <h2 className="text-2xl font-medium text-gray-900 mb-6">
-          12. Do you have any additional feedback for us?
+          {t.page_eleven_ques}
         </h2>
 
         <div className="space-y-4">
           <div className="relative">
             {renderErrorBadge('feedback')}
             <textarea
-              placeholder="Your Feedback"
+              placeholder={`${t.page_nine_comment}`}
               className={`w-full px-4 py-2.5 border border-gray-300 ${
                 touched.feedback && errors.feedback
                   ? 'border-red-500 focus:border-red-500'
@@ -128,7 +130,7 @@ function Page16({ formData, updateFormData, onSubmit }) {
             type="submit"
             className=" text-white font-medium px-8 py-2 rounded transition-colors bg-[#3940BD] hover:bg-white hover:text-[#3940BD] hover:border hover:border-[#3940BD] border-transparent border-[1px]"
           >
-            Submit
+            {t.submit}
           </button>
         </div>
       </form>
